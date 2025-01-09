@@ -9,7 +9,6 @@ class SignUpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Akses DataProvider untuk mendapatkan data message
     final dataProvider = Provider.of<DataProvider>(context);
 
     return Scaffold(
@@ -71,7 +70,6 @@ class SignUpScreen extends StatelessWidget {
               Center(
                 child: ElevatedButton(
                   onPressed: () {
-                    // Proses sign up
                     String name = nameController.text;
                     String email = emailController.text;
                     String password = passwordController.text;
@@ -81,7 +79,6 @@ class SignUpScreen extends StatelessWidget {
                         SnackBar(content: Text('All fields are required')),
                       );
                     } else {
-                      // Tampilkan pesan sukses dan navigasi ke HomeScreen
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(content: Text('Account created for $name')),
                       );
@@ -93,7 +90,7 @@ class SignUpScreen extends StatelessWidget {
               ),
               SizedBox(height: 20),
 
-              // Sign in with Google or Facebook
+              // Divider "or sign in with"
               Center(
                 child: Column(
                   children: [
@@ -102,22 +99,35 @@ class SignUpScreen extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        IconButton(
-                          icon: Image.asset('assets/images/google_icon.png'), // Tambahkan ikon Google
-                          iconSize: 40,
+                        // Google Sign In Button
+                        ElevatedButton.icon(
+                          style: ElevatedButton.styleFrom(
+                            foregroundColor: Colors.black, backgroundColor: Colors.white,
+                            side: BorderSide(color: Colors.grey),
+                            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                          ),
+                          icon: Image.asset(
+                            'assets/images/google_icon.png',
+                            height: 24,
+                            width: 24,
+                          ),
+                          label: Text('Google'),
                           onPressed: () {
-                            // Tambahkan logika Sign in Google
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(content: Text('Google Sign In pressed')),
                             );
                           },
                         ),
                         SizedBox(width: 20),
-                        IconButton(
-                          icon: Image.asset('assets/images/facebook_icon.png'), // Tambahkan ikon Facebook
-                          iconSize: 40,
+                        // Facebook Sign In Button
+                        ElevatedButton.icon(
+                          style: ElevatedButton.styleFrom(
+                            foregroundColor: Colors.white, backgroundColor: Colors.blue,
+                            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                          ),
+                          icon: Icon(Icons.facebook),
+                          label: Text('Facebook'),
                           onPressed: () {
-                            // Tambahkan logika Sign in Facebook
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(content: Text('Facebook Sign In pressed')),
                             );

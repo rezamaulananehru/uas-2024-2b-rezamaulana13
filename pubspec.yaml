@@ -27,3 +27,5 @@ flutter:
 assets:
     -models/data_user.json
     -models/data_pesan.json
+    -assets/images/goggle.png
+    -assets/images/facebook.png
