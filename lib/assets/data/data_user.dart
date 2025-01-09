@@ -11,6 +11,7 @@ class UserModel {
     required this.password,
   });
 
+  // Factory constructor untuk membuat objek UserModel dari JSON
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
       id: json['id'],
@@ -18,5 +19,21 @@ class UserModel {
       email: json['email'],
       password: json['password'],
     );
+  }
+
+  // Menambahkan metode untuk mengonversi objek ke Map
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': name,
+      'email': email,
+      'password': password,
+    };
+  }
+
+  // Bisa menambahkan toString untuk mempermudah debugging
+  @override
+  String toString() {
+    return 'UserModel{id: $id, name: $name, email: $email}';
   }
 }

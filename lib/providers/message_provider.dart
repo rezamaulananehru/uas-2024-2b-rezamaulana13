@@ -1,16 +1,30 @@
-//import 'dart:convert';
 import 'package:flutter/material.dart';
-import '../assets/data/data_pesan.dart';
-import '../utils/json_loader.dart';
+import '../assets/data/data_pesan.dart'; // Pastikan ada model Message
+import '../services/data_service.dart'; // Pastikan ada layanan DataService
 
 class MessageProvider with ChangeNotifier {
-  MessageModel? _message;
+  List<Message> _messages = [];
+  bool _isLoading = false;
+  String? _error;
 
-  MessageModel? get message => _message;
+  List<Message> get messages => _messages;
+  bool get isLoading => _isLoading;
+  String? get error => _error;
 
-  Future<void> loadMessage() async {
-    final data = await JsonLoader.loadJson('assets/data/datamessage.json');
-    _message = MessageModel.fromJson(data);
+  /// Fetch messages from JSON
+  Future<void> fetchMessages() async {
+    _isLoading = true;
     notifyListeners();
+
+    try {
+      final List<Message> fetchedMessages = await DataService.loadMessages();
+      _messages = fetchedMessages;
+      _error = null; // Clear error if successful
+    } catch (e) {
+      _error = "Failed to load messages: $e";
+    } finally {
+      _isLoading = false;
+      notifyListeners();
+    }
   }
 }

@@ -29,3 +29,6 @@ assets:
     - models/data_pesan.json
     - assets/images/google_icon.png
     - assets/images/facebook_icon.png
+    - assets/images/bakso.jpg
+    - assets/json/datamessage.json
+    - assets/json/datauser.json

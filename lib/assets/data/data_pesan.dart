@@ -1,19 +1,29 @@
-class MessageModel {
-  final String welcomeMessage;
-  final String subtitle;
-  final String description;
+class Message {
+  final String senderName;
+  final String content;
+  final String time;
 
-  MessageModel({
-    required this.welcomeMessage,
-    required this.subtitle,
-    required this.description,
+  Message({
+    required this.senderName,
+    required this.content,
+    required this.time,
   });
 
-  factory MessageModel.fromJson(Map<String, dynamic> json) {
-    return MessageModel(
-      welcomeMessage: json['welcomeMessage'],
-      subtitle: json['subtitle'],
-      description: json['description'],
+  /// Konversi dari JSON ke Message
+  factory Message.fromJson(Map<String, dynamic> json) {
+    return Message(
+      senderName: json['senderName'] ?? '',
+      content: json['content'] ?? '',
+      time: json['time'] ?? '',
     );
+  }
+
+  /// Konversi dari Message ke JSON (opsional, jika diperlukan)
+  Map<String, dynamic> toJson() {
+    return {
+      'senderName': senderName,
+      'content': content,
+      'time': time,
+    };
   }
 }
