@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:uas_2024_2b_rezamaulana13/screens/profile_screen.dart';
+import 'package:uas_2024_2b_rezamaulana13/screens/logout_Screen.dart';
+
 import 'providers/data_provider.dart';
 import 'providers/message_provider.dart';
 import 'screens/sign_in_screen.dart';
@@ -39,6 +41,7 @@ class MyApp extends StatelessWidget {
           '/home': (context) => HomeScreen(),
           '/messages': (context) => MessageScreen(),
           '/profile': (context) => ProfileScreen(), 
+          '/logout': (context) => LogoutScreen(),
         },
         onUnknownRoute: (settings) {
           return MaterialPageRoute(
