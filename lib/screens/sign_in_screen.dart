@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'halaman_screen.dart'; // Import Halaman HomeScreen
 
 class SignInScreen extends StatelessWidget {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -10,40 +12,133 @@ class SignInScreen extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'Sign In',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 20),
-            TextField(
-              decoration: InputDecoration(
-                labelText: 'Email',
-                border: OutlineInputBorder(),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Welcome Back!',
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
-            ),
-            SizedBox(height: 20),
-            TextField(
-              obscureText: true,
-              decoration: InputDecoration(
-                labelText: 'Password',
-                border: OutlineInputBorder(),
+              SizedBox(height: 20),
+
+              // Field Email
+              TextField(
+                controller: emailController,
+                decoration: InputDecoration(
+                  labelText: 'Email',
+                  border: OutlineInputBorder(),
+                ),
+                keyboardType: TextInputType.emailAddress,
               ),
-            ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                // Navigasi ke HomeScreen setelah login
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => HomeScreen()),
-                );
-              },
-              child: Text('Sign In'),
-            ),
-          ],
+              SizedBox(height: 10),
+
+              // Field Password
+              TextField(
+                controller: passwordController,
+                decoration: InputDecoration(
+                  labelText: 'Password',
+                  border: OutlineInputBorder(),
+                ),
+                obscureText: true,
+              ),
+              SizedBox(height: 20),
+
+              // Forgot Password
+              Align(
+                alignment: Alignment.centerRight,
+                child: TextButton(
+                  onPressed: () {
+                    // Aksi untuk "Forgot Password"
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('Forgot Password clicked')),
+                    );
+                  },
+                  child: Text('Forgot Password?'),
+                ),
+              ),
+
+              SizedBox(height: 20),
+
+              // Sign In Button
+              Center(
+                child: ElevatedButton(
+                  onPressed: () {
+                    // Proses sign in
+                    String email = emailController.text;
+                    String password = passwordController.text;
+
+                    if (email.isEmpty || password.isEmpty) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text('Email and Password are required')),
+                      );
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text('Logged in as $email')),
+                      );
+                      // Navigasi ke HomeScreen
+                      // Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => HomeScreen()));
+                    }
+                  },
+                  child: Text('Sign In'),
+                ),
+              ),
+
+              SizedBox(height: 20),
+
+              // Sign in with Google or Facebook
+              Center(
+                child: Column(
+                  children: [
+                    Text('or sign in with'),
+                    SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        IconButton(
+                          icon: Icon(Icons.g_mobiledata, size: 36),
+                          onPressed: () {
+                            // Aksi login dengan Google
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(content: Text('Sign in with Google')),
+                            );
+                          },
+                        ),
+                        SizedBox(width: 10),
+                        IconButton(
+                          icon: Icon(Icons.facebook, size: 36, color: Colors.blue),
+                          onPressed: () {
+                            // Aksi login dengan Facebook
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(content: Text('Sign in with Facebook')),
+                            );
+                          },
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+
+              SizedBox(height: 20),
+
+              // Sign Up Now Link
+              Center(
+                child: GestureDetector(
+                  onTap: () {
+                    // Navigasi ke SignUpScreen
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('Navigate to Sign Up')),
+                    );
+                  },
+                  child: Text(
+                    "Don't have an account? Sign Up Now",
+                    style: TextStyle(color: Colors.blue, decoration: TextDecoration.underline),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

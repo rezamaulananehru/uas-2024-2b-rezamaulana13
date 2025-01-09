@@ -1,7 +1,14 @@
-{
-    "users": [
-      { "id": 1, "name": "Reza Maulana" },
-      { "id": 2, "name": "Reza Nehru" }
-    ]
+[
+  {
+    "id": 2,
+    "name": "Reza maul",
+    "email": "Rezam@gmail.com",
+    "password": "password123"
+  },
+  {
+    "id": 2,
+    "name": "Reza",
+    "email": "Reza@gmail.com",
+    "password": "password123"
   }
-  
+]

@@ -1,19 +1,16 @@
-import 'dart:convert';
-import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 
 class DataProvider with ChangeNotifier {
   String _message = '';
+  String _imageUrl = '';
+
   String get message => _message;
+  String get imageUrl => _imageUrl;
 
-  String? _imageUrl;
-  String? get imageUrl => _imageUrl;
-
-  Future<void> loadMessage() async {
-    final data = await rootBundle.loadString('models/datamessage.json');
-    final jsonResult = json.decode(data);
-    _message = jsonResult['message'];
-    _imageUrl = jsonResult['imageUrl'];
+  void loadMessage() {
+    // Simulasi data dari JSON
+    _message = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do";
+    _imageUrl = "https://www.medcom.id/teknologi/news-teknologi/Wb7YB8PK-fotografer-dituntut-karena-foto-selfie-kera";
     notifyListeners();
   }
 }
