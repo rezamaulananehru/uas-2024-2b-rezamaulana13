@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../providers/data_provider.dart'; // Pastikan path benar
 
 class SignInScreen extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
@@ -6,6 +8,9 @@ class SignInScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Akses DataProvider untuk mendapatkan data message
+    final dataProvider = Provider.of<DataProvider>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Sign In'),
@@ -19,6 +24,13 @@ class SignInScreen extends StatelessWidget {
               Text(
                 'Welcome Back!',
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: 10),
+
+              // Menampilkan message dari DataProvider
+              Text(
+                dataProvider.message,
+                style: TextStyle(fontSize: 16, color: Colors.grey),
               ),
               SizedBox(height: 20),
 
@@ -77,7 +89,7 @@ class SignInScreen extends StatelessWidget {
                         SnackBar(content: Text('Logged in as $email')),
                       );
                       // Navigasi ke HomeScreen
-                      // Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => HomeScreen()));
+                      Navigator.pushReplacementNamed(context, '/home');
                     }
                   },
                   child: Text('Sign In'),
@@ -127,9 +139,7 @@ class SignInScreen extends StatelessWidget {
                 child: GestureDetector(
                   onTap: () {
                     // Navigasi ke SignUpScreen
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('Navigate to Sign Up')),
-                    );
+                    Navigator.pushNamed(context, '/signup');
                   },
                   child: Text(
                     "Don't have an account? Sign Up Now",
