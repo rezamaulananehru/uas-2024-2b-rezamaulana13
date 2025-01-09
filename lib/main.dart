@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => DataProvider()..loadData()),
-        ChangeNotifierProvider(create: (_) => MessageProvider()..fetchMessages()),
+        ChangeNotifierProvider(create: (_) => MessageProvider()..fetchMessages()), // Pastikan MessageProvider disini
       ],
       child: MaterialApp(
         theme: ThemeData(
@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
           '/signin': (context) => SignInScreen(),
           '/signup': (context) => SignUpScreen(),
           '/home': (context) => HomeScreen(),
-          '/messages': (context) => MessageScreen(), // Tambahkan MessageScreen
+          '/messages': (context) => MessageScreen(), // Rute untuk MessageScreen
         },
         onUnknownRoute: (settings) {
           return MaterialPageRoute(

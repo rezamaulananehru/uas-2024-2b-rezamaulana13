@@ -1,28 +1,41 @@
 import 'package:flutter/material.dart';
-import '../assets/data/data_pesan.dart'; // Pastikan ada model Message
-import '../services/data_service.dart'; // Pastikan ada layanan DataService
+
+class Message {
+  final String senderName;
+  final String content;
+  final String time;
+
+  Message({required this.senderName, required this.content, required this.time});
+}
 
 class MessageProvider with ChangeNotifier {
   List<Message> _messages = [];
-  bool _isLoading = false;
   String? _error;
+  bool _isLoading = false;
 
   List<Message> get messages => _messages;
-  bool get isLoading => _isLoading;
   String? get error => _error;
+  bool get isLoading => _isLoading;
 
-  /// Fetch messages from JSON
+  // Fungsi untuk mengambil data pesan
   Future<void> fetchMessages() async {
     _isLoading = true;
     notifyListeners();
 
     try {
-      final List<Message> fetchedMessages = await DataService.loadMessages();
-      _messages = fetchedMessages;
-      _error = null; // Clear error if successful
+      // Simulasi delay untuk mengambil data pesan (misalnya API)
+      await Future.delayed(Duration(seconds: 2));
+
+      // Data pesan contoh
+      _messages = [
+        Message(senderName: 'Alice', content: 'Hey, how are you?', time: '10:30 AM'),
+        Message(senderName: 'Bob', content: 'Meeting at 3 PM?', time: '9:00 AM'),
+      ];
+
+      _isLoading = false;
+      notifyListeners();
     } catch (e) {
-      _error = "Failed to load messages: $e";
-    } finally {
+      _error = 'Failed to load messages';
       _isLoading = false;
       notifyListeners();
     }

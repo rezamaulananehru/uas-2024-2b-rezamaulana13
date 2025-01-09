@@ -14,7 +14,7 @@ class MessageScreen extends StatelessWidget {
       body: messageProvider.isLoading
           ? Center(child: CircularProgressIndicator()) // Loading Indicator
           : messageProvider.error != null
-              ? Center(child: Text(messageProvider.error!)) // Tampilkan Error
+              ? Center(child: Text(messageProvider.error!)) // Error Handling
               : ListView.builder(
                   itemCount: messageProvider.messages.length,
                   itemBuilder: (context, index) {
@@ -22,7 +22,7 @@ class MessageScreen extends StatelessWidget {
                     return ListTile(
                       leading: CircleAvatar(
                         backgroundColor: Colors.blue,
-                        child: Text(message.senderName[0]), // Inisial pengirim
+                        child: Text(message.senderName[0]), // Initial of the sender
                       ),
                       title: Text(message.senderName),
                       subtitle: Text(message.content),

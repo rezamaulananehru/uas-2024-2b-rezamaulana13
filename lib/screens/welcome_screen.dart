@@ -8,11 +8,26 @@ class WelcomeScreen extends StatefulWidget {
 class _WelcomeScreenState extends State<WelcomeScreen> {
   int _selectedIndex = 0;
 
-  // Fungsi untuk menangani perubahan tab
   void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
+  setState(() {
+    _selectedIndex = index;
+  });
+
+  // Jika ikon 'Messages' dipilih (indeks ke-4)
+  if (_selectedIndex == 4) {
+    Navigator.pushNamed(context, '/messages'); // Navigasi ke MessageScreen
+  }
+}
+
+
+  // Fungsi untuk navigasi ke halaman pesan (misalnya)
+  void _navigateToMessages() {
+    print("Messages icon tapped");
+    // Jika Anda punya halaman pesan, ganti ini dengan navigasi ke halaman tersebut
+    // Navigator.push(
+    //   context,
+    //   MaterialPageRoute(builder: (context) => MessagesScreen()),
+    // );
   }
 
   @override
@@ -105,10 +120,10 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    _buildCourseImage('assets/images/course1.png'), // Ganti dengan gambar
-                    _buildCourseImage('assets/images/course2.png'), // Ganti dengan gambar
-                    _buildCourseImage('assets/images/course3.png'), // Ganti dengan gambar
-                    _buildCourseImage('assets/images/course4.png'), // Ganti dengan gambar
+                    _buildCourseImage('assets/images/course1.png'),
+                    _buildCourseImage('assets/images/course2.png'),
+                    _buildCourseImage('assets/images/course3.png'),
+                    _buildCourseImage('assets/images/course4.png'),
                   ],
                 ),
               ],
@@ -122,6 +137,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           BottomNavigationBarItem(icon: Icon(Icons.book), label: 'Saved'),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
           BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
+          BottomNavigationBarItem(icon: Icon(Icons.message), label: 'Messages'),
         ],
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
@@ -151,7 +167,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
       ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
-        color: Colors.grey[300], // Warna default jika gambar tidak ditemukan
+        color: Colors.grey[300],
       ),
     );
   }
