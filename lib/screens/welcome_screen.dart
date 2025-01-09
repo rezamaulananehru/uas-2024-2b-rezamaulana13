@@ -13,10 +13,30 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     _selectedIndex = index;
   });
 
-  // Jika ikon 'Messages' dipilih (indeks ke-4)
+  if (_selectedIndex == 1) {
+    Navigator.pushNamed(context, '/home'); // Navigasi ke ProfileScreen
+  }
+
+  if (_selectedIndex == 2) {
+    Navigator.pushNamed(context, '/saved'); // Navigasi ke ProfileScreen
+  }
+
+  if (_selectedIndex == 2) {
+    Navigator.pushNamed(context, '/profile'); // Navigasi ke ProfileScreen
+  }
+
+
+  if (_selectedIndex == 3) {
+    Navigator.pushNamed(context, '/search'); // Navigasi ke ProfileScreen
+  }
+
+   // Jika ikon 'Messages' dipilih (indeks ke-4)
   if (_selectedIndex == 4) {
     Navigator.pushNamed(context, '/messages'); // Navigasi ke MessageScreen
   }
+
+  // Jika ikon 'Profile' dipilih (indeks ke-2)
+  
 }
 
 
