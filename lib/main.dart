@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'providers/data_provider.dart';
-import 'screens/halaman_screen.dart';
+import 'screens/sign_in_screen.dart'; // Import Halaman Sign In
 
 void main() {
   runApp(MyApp());
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       create: (_) => DataProvider()..loadMessage(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: HomeScreen(),
+        home: SignInScreen(), // Ganti dengan halaman Sign In
       ),
     );
   }
