@@ -1,66 +1,45 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../providers/message_provider.dart';
 
 class WelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final messageProvider = Provider.of<MessageProvider>(context);
+
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            // Gambar Welcome (Opsional)
-            Center(
-              child: Image.asset(
-                'assets/images/welcome_image.png', // Ganti dengan asset Anda
-                height: 200,
-              ),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  messageProvider.message?.welcomeMessage ?? 'Loading...',
+                  style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(height: 16),
+                Container(
+                  width: double.infinity,
+                  height: 150,
+                  color: Colors.grey[300], // Placeholder for image
+                  child: Center(child: Text('Image Placeholder')),
+                ),
+                SizedBox(height: 20),
+                Text(
+                  messageProvider.message?.subtitle ?? 'Loading...',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(height: 8),
+                Text(
+                  messageProvider.message?.description ?? 'Loading...',
+                  style: TextStyle(fontSize: 16, color: Colors.grey[600]),
+                ),
+                // Add categories and top courses here as per wireframe...
+              ],
             ),
-            SizedBox(height: 30),
-
-            // Text Welcome
-            Text(
-              'Welcome to MyApp',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 28,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: 10),
-            Text(
-              'Your journey to learn starts here!',
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 16, color: Colors.grey),
-            ),
-            SizedBox(height: 40),
-
-            // Tombol Sign In
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/signin'); // Ganti dengan route Sign In
-              },
-              child: Text('Sign In'),
-              style: ElevatedButton.styleFrom(
-                padding: EdgeInsets.symmetric(vertical: 16),
-                textStyle: TextStyle(fontSize: 18),
-              ),
-            ),
-            SizedBox(height: 10),
-
-            // Tombol Sign Up
-            OutlinedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/signup'); // Ganti dengan route Sign Up
-              },
-              child: Text('Sign Up'),
-              style: OutlinedButton.styleFrom(
-                padding: EdgeInsets.symmetric(vertical: 16),
-                textStyle: TextStyle(fontSize: 18),
-              ),
-            ),
-          ],
+          ),
         ),
       ),
     );

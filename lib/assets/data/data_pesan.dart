@@ -1,13 +1,19 @@
-class DataPesan {
-  final int id;
-  final String message;
+class MessageModel {
+  final String welcomeMessage;
+  final String subtitle;
+  final String description;
 
-  DataPesan({required this.id, required this.message});
+  MessageModel({
+    required this.welcomeMessage,
+    required this.subtitle,
+    required this.description,
+  });
 
-  factory DataPesan.fromJson(Map<String, dynamic> json) {
-    return DataPesan(
-      id: json['id'],
-      message: json['message'],
+  factory MessageModel.fromJson(Map<String, dynamic> json) {
+    return MessageModel(
+      welcomeMessage: json['welcomeMessage'],
+      subtitle: json['subtitle'],
+      description: json['description'],
     );
   }
 }

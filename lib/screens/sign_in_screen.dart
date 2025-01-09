@@ -69,7 +69,6 @@ class SignInScreen extends StatelessWidget {
                   child: Text('Forgot Password?'),
                 ),
               ),
-
               SizedBox(height: 20),
 
               // Sign In Button
@@ -88,14 +87,13 @@ class SignInScreen extends StatelessWidget {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(content: Text('Logged in as $email')),
                       );
-                      // Navigasi ke HomeScreen
-                      Navigator.pushReplacementNamed(context, '/home');
+                      // Navigasi ke WelcomeScreen
+                      Navigator.pushReplacementNamed(context, '/welcome');
                     }
                   },
                   child: Text('Sign In'),
                 ),
               ),
-
               SizedBox(height: 20),
 
               // Sign in with Google or Facebook
@@ -131,7 +129,6 @@ class SignInScreen extends StatelessWidget {
                   ],
                 ),
               ),
-
               SizedBox(height: 20),
 
               // Sign Up Now Link

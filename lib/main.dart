@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'providers/data_provider.dart';
+import 'providers/message_provider.dart';
+import 'providers/user_provider.dart';
 import 'screens/sign_in_screen.dart';
-import 'screens/sign_up_screen.dart';
-import 'screens/home_screen.dart';
-import 'screens/welcome_screen.dart'; // Tambahkan WelcomeScreen jika ada
+import 'screens/welcome_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -13,29 +12,18 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => DataProvider()..loadData(), // Memuat data saat aplikasi dijalankan
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => MessageProvider()..loadMessage()),
+        ChangeNotifierProvider(create: (_) => UserProvider()..loadUsers()),
+      ],
       child: MaterialApp(
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-          scaffoldBackgroundColor: Colors.white,
-          textTheme: TextTheme(
-            bodyLarge: TextStyle(fontSize: 16.0, color: Colors.black),
-            labelLarge: TextStyle(fontSize: 14.0, color: Colors.grey[700]),
-          ),
-        ),
+        theme: ThemeData(primarySwatch: Colors.blue),
         debugShowCheckedModeBanner: false,
-        initialRoute: '/signin', // Ganti ke '/welcome' jika ada Welcome Screen
+        initialRoute: '/signin',
         routes: {
-          '/welcome': (context) => WelcomeScreen(), // Jika menggunakan WelcomeScreen
           '/signin': (context) => SignInScreen(),
-          '/signup': (context) => SignUpScreen(),
-          '/home': (context) => HomeScreen(),
-        },
-        onUnknownRoute: (settings) {
-          return MaterialPageRoute(
-            builder: (context) => SignInScreen(), // Default fallback ke SignInScreen
-          );
+          '/welcome': (context) => WelcomeScreen(),
         },
       ),
     );
