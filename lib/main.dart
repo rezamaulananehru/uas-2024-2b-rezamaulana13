@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:uas_2024_2b_rezamaulana13/screens/profile_screen.dart';
-import 'package:uas_2024_2b_rezamaulana13/screens/logout_Screen.dart';
+
+// Import dengan alias
+import 'package:uas_2024_2b_rezamaulana13/screens/profile_screen.dart' as profile;
+import 'package:uas_2024_2b_rezamaulana13/screens/logout_screen.dart' as logout;
+
 import 'providers/data_provider.dart';
 import 'providers/message_provider.dart';
 import 'screens/sign_in_screen.dart';
@@ -39,8 +42,8 @@ class MyApp extends StatelessWidget {
           '/signup': (context) => SignUpScreen(),
           '/home': (context) => HomeScreen(),
           '/messages': (context) => MessageScreen(),
-          '/profile': (context) => ProfileScreen(),
-          '/logout': (context) => LogoutScreen(), // Rute ke LogoutScreen
+          '/profile': (context) => profile.ProfileScreen(), // Gunakan alias 'profile'
+          '/logout': (context) => logout.LogoutScreen(),   // Gunakan alias 'logout'
         },
         onUnknownRoute: (settings) {
           return MaterialPageRoute(
