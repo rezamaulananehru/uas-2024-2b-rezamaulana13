@@ -11,6 +11,20 @@ class ProfileScreen extends StatelessWidget {
       body: ListView(
         padding: EdgeInsets.all(16.0),
         children: [
+          // Foto Profil
+          Center(
+            child: CircleAvatar(
+              radius: 50,
+              backgroundColor: Colors.grey[300],
+              child: Icon(
+                Icons.person,
+                size: 50,
+                color: Colors.grey[700],
+              ),
+            ),
+          ),
+          SizedBox(height: 20),
+
           // Section 1: Video Preferences
           _buildSectionTitle('Video preference'),
           _buildListTile('Download Option', Icons.arrow_forward_ios, () {}),
@@ -33,18 +47,34 @@ class ProfileScreen extends StatelessWidget {
 
           // Log Out Button
           Center(
-  child: TextButton(
-    onPressed: () {
-      Navigator.pushNamed(context, '/logout');
-    },
-    child: Text(
-      'Log Out',
-      style: TextStyle(color: Colors.red, fontSize: 16),
-    ),
-  ),
-),
-
+            child: TextButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/logout');
+              },
+              child: Text(
+                'Log Out',
+                style: TextStyle(color: Colors.red, fontSize: 16),
+              ),
+            ),
+          ),
         ],
+      ),
+
+      // Bottom Navigation Bar
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.book), label: 'Saved'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
+          BottomNavigationBarItem(icon: Icon(Icons.message), label: 'Messages'),
+        ],
+        currentIndex: 2, // Profile selected by default
+        selectedItemColor: Colors.blue,
+        unselectedItemColor: Colors.grey,
+        onTap: (index) {
+          // Handle navigation here
+        },
       ),
     );
   }
