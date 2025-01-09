@@ -25,7 +25,7 @@ dev_dependencies:
 flutter:
   uses-material-design: true
 assets:
-    -models/data_user.json
-    -models/data_pesan.json
-    -assets/images/goggle.png
-    -assets/images/facebook.png
+    - models/data_user.json
+    - models/data_pesan.json
+    - assets/images/google_icon.png
+    - assets/images/facebook_icon.png

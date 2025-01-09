@@ -4,6 +4,7 @@ import 'providers/data_provider.dart';
 import 'screens/sign_in_screen.dart';
 import 'screens/sign_up_screen.dart';
 import 'screens/home_screen.dart';
+import 'screens/welcome_screen.dart'; // Tambahkan WelcomeScreen jika ada
 
 void main() {
   runApp(MyApp());
@@ -19,16 +20,22 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           scaffoldBackgroundColor: Colors.white,
           textTheme: TextTheme(
-            bodyLarge: TextStyle(fontSize: 16.0, color: Colors.black), // Pengganti bodyText1
-            labelLarge: TextStyle(fontSize: 14.0, color: Colors.grey[700]), // Pengganti bodyText2
+            bodyLarge: TextStyle(fontSize: 16.0, color: Colors.black),
+            labelLarge: TextStyle(fontSize: 14.0, color: Colors.grey[700]),
           ),
         ),
         debugShowCheckedModeBanner: false,
-        initialRoute: '/signin',
+        initialRoute: '/signin', // Ganti ke '/welcome' jika ada Welcome Screen
         routes: {
+          '/welcome': (context) => WelcomeScreen(), // Jika menggunakan WelcomeScreen
           '/signin': (context) => SignInScreen(),
           '/signup': (context) => SignUpScreen(),
           '/home': (context) => HomeScreen(),
+        },
+        onUnknownRoute: (settings) {
+          return MaterialPageRoute(
+            builder: (context) => SignInScreen(), // Default fallback ke SignInScreen
+          );
         },
       ),
     );
