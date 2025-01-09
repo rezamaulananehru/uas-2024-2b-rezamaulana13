@@ -15,6 +15,14 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (_) => DataProvider()..loadData(), // Memuat data saat aplikasi dijalankan
       child: MaterialApp(
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          scaffoldBackgroundColor: Colors.white,
+          textTheme: TextTheme(
+            bodyLarge: TextStyle(fontSize: 16.0, color: Colors.black), // Pengganti bodyText1
+            labelLarge: TextStyle(fontSize: 14.0, color: Colors.grey[700]), // Pengganti bodyText2
+          ),
+        ),
         debugShowCheckedModeBanner: false,
         initialRoute: '/signin',
         routes: {

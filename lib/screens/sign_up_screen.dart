@@ -91,6 +91,60 @@ class SignUpScreen extends StatelessWidget {
                   child: Text('Sign Up'),
                 ),
               ),
+              SizedBox(height: 20),
+
+              // Sign in with Google or Facebook
+              Center(
+                child: Column(
+                  children: [
+                    Text('or sign in with'),
+                    SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        IconButton(
+                          icon: Image.asset('assets/images/google_icon.png'), // Tambahkan ikon Google
+                          iconSize: 40,
+                          onPressed: () {
+                            // Tambahkan logika Sign in Google
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(content: Text('Google Sign In pressed')),
+                            );
+                          },
+                        ),
+                        SizedBox(width: 20),
+                        IconButton(
+                          icon: Image.asset('assets/images/facebook_icon.png'), // Tambahkan ikon Facebook
+                          iconSize: 40,
+                          onPressed: () {
+                            // Tambahkan logika Sign in Facebook
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(content: Text('Facebook Sign In pressed')),
+                            );
+                          },
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 20),
+
+              // Link to Sign In
+              Center(
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, '/signin');
+                  },
+                  child: Text(
+                    "Already have an account? Sign In",
+                    style: TextStyle(
+                      color: Colors.blue,
+                      decoration: TextDecoration.underline,
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
         ),
