@@ -1,16 +1,20 @@
+import 'dart:convert';
+import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 
 class DataProvider with ChangeNotifier {
-  String _message = '';
-  String _imageUrl = '';
+  String message = '';
+  String imageUrl = '';
 
-  String get message => _message;
-  String get imageUrl => _imageUrl;
-
-  void loadMessage() {
-    // Simulasi data dari JSON
-    _message = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do";
-    _imageUrl = "https://www.medcom.id/teknologi/news-teknologi/Wb7YB8PK-fotografer-dituntut-karena-foto-selfie-kera";
-    notifyListeners();
+  Future<void> loadData() async {
+    try {
+      final String response = await rootBundle.loadString('assets/data/data_pesan.json');
+      final Map<String, dynamic> data = jsonDecode(response);
+      message = data['message'];
+      imageUrl = data['imageUrl'];
+      notifyListeners(); // Memberitahu widget yang bergantung bahwa data telah diperbarui
+    } catch (e) {
+      print('Error loading data: $e');
+    }
   }
 }

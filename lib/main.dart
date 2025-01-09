@@ -13,10 +13,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) => DataProvider(),
+      create: (_) => DataProvider()..loadData(), // Memuat data saat aplikasi dijalankan
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        initialRoute: '/signin', // Halaman awal
+        initialRoute: '/signin',
         routes: {
           '/signin': (context) => SignInScreen(),
           '/signup': (context) => SignUpScreen(),
