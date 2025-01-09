@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:uas_2024_2b_rezamaulana13/screens/profile_screen.dart';
 import 'package:uas_2024_2b_rezamaulana13/screens/logout_Screen.dart';
-
 import 'providers/data_provider.dart';
 import 'providers/message_provider.dart';
 import 'screens/sign_in_screen.dart';
@@ -21,7 +20,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => DataProvider()..loadData()),
-        ChangeNotifierProvider(create: (_) => MessageProvider()..fetchMessages()), // Pastikan MessageProvider disini
+        ChangeNotifierProvider(create: (_) => MessageProvider()..fetchMessages()),
       ],
       child: MaterialApp(
         theme: ThemeData(
@@ -33,25 +32,22 @@ class MyApp extends StatelessWidget {
           ),
         ),
         debugShowCheckedModeBanner: false,
-        initialRoute: '/welcome', // Tetap menuju WelcomeScreen
+        initialRoute: '/welcome',
         routes: {
           '/welcome': (context) => WelcomeScreen(),
           '/signin': (context) => SignInScreen(),
           '/signup': (context) => SignUpScreen(),
           '/home': (context) => HomeScreen(),
           '/messages': (context) => MessageScreen(),
-          '/profile': (context) => ProfileScreen(), 
-          '/logout': (context) => LogoutScreen(),
+          '/profile': (context) => ProfileScreen(),
+          '/logout': (context) => LogoutScreen(), // Rute ke LogoutScreen
         },
         onUnknownRoute: (settings) {
           return MaterialPageRoute(
-            builder: (context) => SignInScreen(), // Fallback default
+            builder: (context) => SignInScreen(),
           );
         },
       ),
     );
   }
-}
-
-class LogoutScreen {
 }
