@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 // Import dengan alias
 import 'package:uas_2024_2b_rezamaulana13/screens/profile_screen.dart' as profile;
 import 'package:uas_2024_2b_rezamaulana13/screens/logout_screen.dart' as logout;
+import 'package:uas_2024_2b_rezamaulana13/screens/notification_screen.dart' as notification;
 
 import 'providers/data_provider.dart';
 import 'providers/message_provider.dart';
@@ -44,6 +45,7 @@ class MyApp extends StatelessWidget {
           '/messages': (context) => MessageScreen(),
           '/profile': (context) => profile.ProfileScreen(), // Gunakan alias 'profile'
           '/logout': (context) => logout.LogoutScreen(),   // Gunakan alias 'logout'
+          '/notification': (context) => notification.NotificationScreen(), // Gunakan alias 'notification'
         },
         onUnknownRoute: (settings) {
           return MaterialPageRoute(
